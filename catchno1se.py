@@ -1,8 +1,10 @@
-from selenium import webdriver;
 #--------------------Coded By no1se----------------------#
+from selenium import webdriver;
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.select import Select;
 from selenium.webdriver.common.keys import Keys;
 from selenium.webdriver.common.by import By;
+from selenium import webdriver
 import time;
 import colorama;
 from colorama import init, Fore, Back, Style;
@@ -11,8 +13,9 @@ init(convert=True)
 from colorama import Fore, Back, Style;
 from pathlib import Path;
 from os import system, name;
-import os
+import os;
 from art import *
+
 
 #---------------------Checking if chromedriver.exe is installed-------------#
 chromeexe = Path("C:\Windows\chromedriver.exe")
@@ -33,8 +36,11 @@ print(Fore.WHITE + Back.MAGENTA + "What is the message you want to spam?")
 print(Style.RESET_ALL)
 msg = input()
 #------------Next Part get the chromedriver------------------#
+ChromeOptions.headless = True
 PATH = "C:\Windows\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+driver = webdriver.Chrome(options=options, executable_path=PATH)
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 cls()
