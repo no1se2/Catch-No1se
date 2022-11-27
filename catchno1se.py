@@ -1,6 +1,6 @@
 #--------------------Coded By no1se----------------------#
 from selenium import webdriver;
-from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions;
 from selenium.webdriver.support.select import Select;
 from selenium.webdriver.common.keys import Keys;
 from selenium.webdriver.common.by import By;
@@ -35,12 +35,18 @@ catchage = input()
 print(Fore.WHITE + Back.MAGENTA + "What is the message you want to spam?")
 print(Style.RESET_ALL)
 msg = input()
+#------------------27 and counting-----------------#
+Messeges = 0
+def count():
+    global Messeges
+    Messeges = Messeges + 1
 #------------Next Part get the chromedriver------------------#
-ChromeOptions.headless = True
 PATH = "C:\Windows\chromedriver.exe"
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-logging"])
-driver = webdriver.Chrome(options=options, executable_path=PATH)
+options = ChromeOptions()
+options.headless = True
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_argument("--headless")
+driver = webdriver.Chrome(options=options)
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 cls()
@@ -54,6 +60,8 @@ print(Back.MAGENTA + Fore.CYAN + """
 ██║ ╚═╝ ██║██║  ██║██████╔╝███████╗    ██████╔╝   ██║       ██║ ╚████║╚██████╔╝ ██║███████║███████╗    ███████╗██║   ██║   ███████╗██║  ██║██║  ██║███████╗███████╗██║   ██╗██╗██╗
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝    ╚═════╝    ╚═╝       ╚═╝  ╚═══╝ ╚═════╝  ╚═╝╚══════╝╚══════╝    ╚══════╝╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝   ╚═╝╚═╝╚═╝
 """)
+print(Fore.GREEN + "--------->Messeges been sent `so far<---------")
+print(Fore.LIGHTYELLOW_EX + "---->",Messeges,Fore.LIGHTYELLOW_EX +"<-------")
 #----------------Updating Information---------------------#
 driver.get("https://catch-chat.com/")
 print(driver.title)
@@ -71,28 +79,39 @@ time.sleep(0.5)
 sex = driver.find_element(By.ID, "btnSex")
 time.sleep(0.5)
 sex.click()
+time.sleep(1)
+sex.click()
 time.sleep(0.5)
 catchin = driver.find_element(By.ID, "btnCatchIn")
 time.sleep(0.5)
 catchin.click()
 time.sleep(0.3)
-#----------------------loop--------------#
+#----------------------loop---------------#
 def loop():
-    try:
-        driver.find_element(By.ID, "toast")
-        quit()
-    except:
-        pass
+    msgtype = driver.find_element(By.ID, "inpMsg")               #  
+    time.sleep(0.1)                                              # 
+    msgtype.send_keys(msg) #the msg been typed                   # 
+    time.sleep(0.1)                                              #
+    msgsent = driver.find_element(By.ID, "btnSend")              #  
+    time.sleep(0.1)                                              #
+    msgsent.click()                                              #
+    time.sleep(5)                                                #
+    msgtype.send_keys(x)                                         #
+    time.sleep(5)   
+    loop()
 #----------------------Starting the procces of spam--------------#
-for i in msg:
-    msgtype = driver.find_element(By.ID, "inpMsg")
-    time.sleep(1)
-    msgtype.send_keys(msg) #the msg been typed
-    time.sleep(0.1)
-    msgsent = driver.find_element(By.ID, "btnSend")
-    time.sleep(0.1)
-    msgsent.click()
+for x in msg:                                                    #
+    msgtype = driver.find_element(By.ID, "inpMsg")               #  
+    time.sleep(0.1)                                              # 
+    msgtype.send_keys(msg) #the msg been typed                   # 
+    time.sleep(0.1)                                              #
+    msgsent = driver.find_element(By.ID, "btnSend")              #  
+    time.sleep(0.1)                                              #
+    msgsent.click()                                              #
+    time.sleep(5)                                                #
+    msgtype.send_keys(x)                                         #
     time.sleep(5)
-    msgtype.send_keys(i)
-driver.quit()
-#--------------------Coded By no1se----------------------#
+    loop()                                                       #
+                                                                 #                                                          
+driver.close()                                                   #
+#--------------------Coded By no1se------------------------------#
