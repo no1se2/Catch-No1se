@@ -82,6 +82,8 @@ time.sleep(0.5)
 catchin = driver.find_element(By.ID, "btnCatchIn")
 time.sleep(0.5)
 catchin.click()
+soundoff = driver.find_element(By.ID, "btnSound")
+soundoff.click()
 time.sleep(0.3)
 #----------------------loop---------------#
 def CountSent():
@@ -112,6 +114,7 @@ def loop():
 """)
     print(Fore.GREEN + "--------->Messeges been sent so far<---------")
     print(Fore.LIGHTYELLOW_EX + "------------------------------>",Sent,Fore.LIGHTYELLOW_EX +"<-----------------------------------")
+    print(driver.title)
     loop()
 #----------------------Starting the procces of spam--------------#
 for x in msg:                                                    #
