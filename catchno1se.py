@@ -16,6 +16,8 @@ from os import system, name;
 import os;
 from art import *
 
+Sent = 0
+
 
 #---------------------Checking if chromedriver.exe is installed-------------#
 chromeexe = Path("C:\Windows\chromedriver.exe")
@@ -35,15 +37,10 @@ catchage = input()
 print(Fore.WHITE + Back.MAGENTA + "What is the message you want to spam?")
 print(Style.RESET_ALL)
 msg = input()
-#------------------27 and counting-----------------#
-Messeges = 0
-def count():
-    global Messeges
-    Messeges = Messeges + 1
 #------------Next Part get the chromedriver------------------#
 PATH = "C:\Windows\chromedriver.exe"
 options = ChromeOptions()
-options.headless = True
+options.headless = False
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_argument("--headless")
 driver = webdriver.Chrome(options=options)
@@ -60,8 +57,8 @@ print(Back.MAGENTA + Fore.CYAN + """
 ██║ ╚═╝ ██║██║  ██║██████╔╝███████╗    ██████╔╝   ██║       ██║ ╚████║╚██████╔╝ ██║███████║███████╗    ███████╗██║   ██║   ███████╗██║  ██║██║  ██║███████╗███████╗██║   ██╗██╗██╗
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝    ╚═════╝    ╚═╝       ╚═╝  ╚═══╝ ╚═════╝  ╚═╝╚══════╝╚══════╝    ╚══════╝╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝   ╚═╝╚═╝╚═╝
 """)
-print(Fore.GREEN + "--------->Messeges been sent `so far<---------")
-print(Fore.LIGHTYELLOW_EX + "---->",Messeges,Fore.LIGHTYELLOW_EX +"<-------")
+print(Fore.GREEN + "--------->Messeges been sent so far<---------")
+print(Fore.LIGHTYELLOW_EX + "------------------------------>",Sent,Fore.LIGHTYELLOW_EX +"<-----------------------------------")
 #----------------Updating Information---------------------#
 driver.get("https://catch-chat.com/")
 print(driver.title)
@@ -87,6 +84,9 @@ time.sleep(0.5)
 catchin.click()
 time.sleep(0.3)
 #----------------------loop---------------#
+def CountSent():
+    global Sent
+    Sent= Sent + 1
 def loop():
     msgtype = driver.find_element(By.ID, "inpMsg")               #  
     time.sleep(0.1)                                              # 
@@ -97,13 +97,27 @@ def loop():
     msgsent.click()                                              #
     time.sleep(5)                                                #
     msgtype.send_keys(x)                                         #
-    time.sleep(5)   
+    time.sleep(5)
+    CountSent()
+    cls()
+#----------------cmd-interface-part-of-the-loop---------------------#
+    byno1se = "Made By no1se Literally"
+    print(Back.MAGENTA + Fore.CYAN + """
+███╗   ███╗ █████╗ ██████╗ ███████╗    ██████╗ ██╗   ██╗    ███╗   ██╗ ██████╗  ██╗███████╗███████╗    ██╗     ██╗████████╗███████╗██████╗  █████╗ ██╗     ██╗  ██╗   ██╗██╗██╗██╗
+████╗ ████║██╔══██╗██╔══██╗██╔════╝    ██╔══██╗╚██╗ ██╔╝    ████╗  ██║██╔═══██╗███║██╔════╝██╔════╝    ██║     ██║╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██║     ██║  ╚██╗ ██╔╝██║██║██║
+██╔████╔██║███████║██║  ██║█████╗      ██████╔╝ ╚████╔╝     ██╔██╗ ██║██║   ██║╚██║███████╗█████╗      ██║     ██║   ██║   █████╗  ██████╔╝███████║██║     ██║   ╚████╔╝ ██║██║██║
+██║╚██╔╝██║██╔══██║██║  ██║██╔══╝      ██╔══██╗  ╚██╔╝      ██║╚██╗██║██║   ██║ ██║╚════██║██╔══╝      ██║     ██║   ██║   ██╔══╝  ██╔══██╗██╔══██║██║     ██║    ╚██╔╝  ╚═╝╚═╝╚═╝
+██║ ╚═╝ ██║██║  ██║██████╔╝███████╗    ██████╔╝   ██║       ██║ ╚████║╚██████╔╝ ██║███████║███████╗    ███████╗██║   ██║   ███████╗██║  ██║██║  ██║███████╗███████╗██║   ██╗██╗██╗
+╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝    ╚═════╝    ╚═╝       ╚═╝  ╚═══╝ ╚═════╝  ╚═╝╚══════╝╚══════╝    ╚══════╝╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝   ╚═╝╚═╝╚═╝
+""")
+    print(Fore.GREEN + "--------->Messeges been sent so far<---------")
+    print(Fore.LIGHTYELLOW_EX + "------------------------------>",Sent,Fore.LIGHTYELLOW_EX +"<-----------------------------------")
     loop()
 #----------------------Starting the procces of spam--------------#
 for x in msg:                                                    #
     msgtype = driver.find_element(By.ID, "inpMsg")               #  
     time.sleep(0.1)                                              # 
-    msgtype.send_keys(msg) #the msg been typed                   # 
+    msgtype.send_keys(msg) #the msg been typed                   #
     time.sleep(0.1)                                              #
     msgsent = driver.find_element(By.ID, "btnSend")              #  
     time.sleep(0.1)                                              #
@@ -111,7 +125,9 @@ for x in msg:                                                    #
     time.sleep(5)                                                #
     msgtype.send_keys(x)                                         #
     time.sleep(5)
-    loop()                                                       #
-                                                                 #                                                          
-driver.close()                                                   #
+    CountSent()
+    loop()
+    cls()
+
+                                                                 #                                                                                              #
 #--------------------Coded By no1se------------------------------#
